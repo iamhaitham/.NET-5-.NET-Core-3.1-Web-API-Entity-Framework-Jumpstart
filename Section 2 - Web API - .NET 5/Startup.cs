@@ -34,6 +34,7 @@ namespace Section_1___Introduction___.NET_5
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Section_1___Introduction___.NET_5", Version = "v1" });
             });
             services.AddScoped<ICharacterService,CharacterService>();
+            services.AddAutoMapper(typeof(AutoMapperProfile));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
