@@ -14,17 +14,17 @@ namespace Section_1___Introduction___.NET_5.Controllers
         private static readonly List<Character> characters = new List<Character>
         {
             new Character(),
-            new Character(){Name="Sam"}
+            new Character(){Id=1,Name="Sam"}
         };
         [HttpGet("GetAll")]
         public ActionResult<List<Character>> Get()
         {
             return Ok(characters);
         }
-        [HttpGet]
-        public ActionResult<Character> GetSingle()
+        [HttpGet("{id}")]
+        public ActionResult<Character> GetSingle(int id)
         {
-            return Ok(characters[0]);
+            return Ok(characters.FirstOrDefault(c => c.Id == id));
         }
     }
 }
