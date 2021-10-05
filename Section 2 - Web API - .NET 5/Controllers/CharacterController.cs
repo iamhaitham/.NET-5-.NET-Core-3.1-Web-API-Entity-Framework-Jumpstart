@@ -11,11 +11,20 @@ namespace Section_1___Introduction___.NET_5.Controllers
     [Route("[controller]")]
     public class CharacterController : ControllerBase
     {
-        private static Character knight = new Character();
-        [HttpGet]
-        public ActionResult<Character> Get()
+        private static readonly List<Character> characters = new List<Character>
         {
-            return Ok(knight);
+            new Character(),
+            new Character(){Name="Sam"}
+        };
+        [HttpGet("GetAll")]
+        public ActionResult<List<Character>> Get()
+        {
+            return Ok(characters);
+        }
+        [HttpGet]
+        public ActionResult<Character> GetSingle()
+        {
+            return Ok(characters[0]);
         }
     }
 }
