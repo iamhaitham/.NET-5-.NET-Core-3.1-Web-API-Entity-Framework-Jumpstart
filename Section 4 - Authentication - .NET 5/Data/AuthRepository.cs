@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using Section_1___Introduction___.NET_5.Models;
 
 namespace Section_1___Introduction___.NET_5.Data
@@ -22,19 +23,29 @@ namespace Section_1___Introduction___.NET_5.Data
 
         public async Task<ServiceResponse<int>> Register(User user, string password)
         {
+            ServiceResponse<int> response = new ServiceResponse<int>();
+            if (await UserExists(user.Username))
+            {
+                response.Success = false;
+                response.Message = "User already exists.";
+                return response;
+            }
             CreatePasswordHash(password, out byte[] passwrodHash, out byte[] passwordSalt);
             user.PasswordHash = passwrodHash;
             user.PasswordSalt = passwordSalt;
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
-            ServiceResponse<int> response = new ServiceResponse<int>();
             response.Data = user.Id;
             return response;
         }
 
-        public Task<bool> UserExists(string username)
+        public async Task<bool> UserExists(string username)
         {
-            throw new NotImplementedException();
+            if (await _context.Users.AnyAsync(x => x.Username.ToLower().Equals(username.ToLower())))
+            {
+                return true;
+            }
+            return false;
         }
         private void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
         {
@@ -42,7 +53,6 @@ namespace Section_1___Introduction___.NET_5.Data
             {
                 passwordSalt = hmac.Key;
                 passwordHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
-
             }
 
         }
