@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 using Section_1___Introduction___.NET_5.DTOs.Character;
@@ -13,5 +14,6 @@ namespace Section_1___Introduction___.NET_5.Services.CharacterService
         Task<ServiceResponse<GetCharacterDto>> GetCharacterById(int id);
         Task<ServiceResponse<List<GetCharacterDto>>> AddCharacter(AddCharacterDto newCharacter);
         Task<ServiceResponse<GetCharacterDto>> UpdateCharacter(UpdateCharacterDto updatedCharacter);
+        Task<ServiceResponse<List<GetCharacterDto>>> Delete(int id);
     }
 }
