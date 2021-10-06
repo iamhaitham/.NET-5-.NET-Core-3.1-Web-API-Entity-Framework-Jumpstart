@@ -44,7 +44,7 @@ namespace Section_1___Introduction___.NET_5.Controllers
             }
             return Ok(response);
         }
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public async Task<ActionResult<ServiceResponse<GetCharacterDto>>> Delete(int id)
         {
             var response = await _characterService.Delete(id);
