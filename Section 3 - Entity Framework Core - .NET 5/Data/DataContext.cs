@@ -12,7 +12,7 @@ namespace Section_1___Introduction___.NET_5.Data
     {
         protected DataContext(DbContextOptions<DataContext> options) : base(options)
         {
-
+            
         }
         public DbSet<Character> Characters { set; get; }
     }
