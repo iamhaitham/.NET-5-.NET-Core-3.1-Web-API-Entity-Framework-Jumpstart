@@ -15,5 +15,6 @@ namespace Section_1___Introduction___.NET_5.Data
 
         }
         public DbSet<Character> Characters { set; get; }
+        public DbSet<User> Users { set; get; }
     }
 }
