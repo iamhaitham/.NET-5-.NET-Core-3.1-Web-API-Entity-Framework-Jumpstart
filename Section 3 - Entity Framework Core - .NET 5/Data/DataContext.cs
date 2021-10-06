@@ -10,9 +10,9 @@ namespace Section_1___Introduction___.NET_5.Data
 {
     public class DataContext : DbContext
     {
-        protected DataContext(DbContextOptions<DataContext> options) : base(options)
+        public DataContext(DbContextOptions<DataContext> options) : base(options)
         {
-            
+
         }
         public DbSet<Character> Characters { set; get; }
     }
