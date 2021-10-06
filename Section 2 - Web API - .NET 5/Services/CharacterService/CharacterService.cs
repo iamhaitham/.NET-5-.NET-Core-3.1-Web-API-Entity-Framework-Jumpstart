@@ -33,23 +33,6 @@ namespace Section_1___Introduction___.NET_5.Services.CharacterService
             return serviceResponse;
         }
 
-        public async Task<ServiceResponse<List<GetCharacterDto>>> Delete(int id)
-        {
-            var serviceResponse = new ServiceResponse<List<GetCharacterDto>>();
-            try
-            {
-                Character character = characters.First(c => c.Id == id);
-                characters.Remove(character);
-                serviceResponse.Data = characters.Select(c => _mapper.Map<GetCharacterDto>(c)).ToList();
-            }
-            catch (Exception ex)
-            {
-                serviceResponse.Success = false;
-                serviceResponse.Message = ex.Message;
-            }
-            return serviceResponse;
-        }
-
         public async Task<ServiceResponse<List<GetCharacterDto>>> GetAllCharacters()
         {
             var serviceResponse = new ServiceResponse<List<GetCharacterDto>>();
