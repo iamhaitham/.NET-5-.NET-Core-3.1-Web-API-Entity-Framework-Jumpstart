@@ -20,7 +20,7 @@ namespace Section_1___Introduction___.NET_5.Controllers
         {
             _characterService = characterService;
         }
-
+        [AllowAnonymous]
         [HttpGet("GetAll")]
         public async Task<ActionResult<ServiceResponse<List<GetCharacterDto>>>> Get()
         {

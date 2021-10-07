@@ -16,6 +16,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Section_1___Introduction___.NET_5.Data;
 using Section_1___Introduction___.NET_5.Services.CharacterService;
+using Swashbuckle.AspNetCore.Filters;
 
 namespace Section_1___Introduction___.NET_5
 {
@@ -38,6 +39,13 @@ namespace Section_1___Introduction___.NET_5
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Section_1___Introduction___.NET_5", Version = "v1" });
+                c.AddSecurityDefinition("oauth2",new OpenApiSecurityScheme(){
+                    Description = "Standard Authorization header using the Bearer scheme. Example: \"bearer {token}\"",
+                    In = ParameterLocation.Header,
+                    Name = "Authorization",
+                    Type = SecuritySchemeType.ApiKey
+                });
+                c.OperationFilter<SecurityRequirementsOperationFilter>();
             });
             services.AddScoped<ICharacterService, CharacterService>();
             services.AddAutoMapper(typeof(AutoMapperProfile));
