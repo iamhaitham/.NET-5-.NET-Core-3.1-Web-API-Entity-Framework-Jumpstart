@@ -54,7 +54,6 @@ namespace Section_1___Introduction___.NET_5.Data
                 passwordSalt = hmac.Key;
                 passwordHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
             }
-
         }
     }
 }

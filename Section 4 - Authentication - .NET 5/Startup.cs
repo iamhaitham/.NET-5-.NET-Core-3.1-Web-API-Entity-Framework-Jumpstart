@@ -39,6 +39,7 @@ namespace Section_1___Introduction___.NET_5
             });
             services.AddScoped<ICharacterService, CharacterService>();
             services.AddAutoMapper(typeof(AutoMapperProfile));
+            services.AddScoped<IAuthRepository,AuthRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
