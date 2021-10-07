@@ -1,10 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Section_1___Introduction___.NET_5.DTOs.Character;
+using Section_1___Introduction___.NET_5.Migrations;
 using Section_1___Introduction___.NET_5.Models;
 using Section_1___Introduction___.NET_5.Services.CharacterService;
 
@@ -20,11 +22,11 @@ namespace Section_1___Introduction___.NET_5.Controllers
         {
             _characterService = characterService;
         }
-        [AllowAnonymous]
         [HttpGet("GetAll")]
         public async Task<ActionResult<ServiceResponse<List<GetCharacterDto>>>> Get()
         {
-            return Ok(await _characterService.GetAllCharacters());
+            int id = int.Parse(User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value);
+            return Ok(await _characterService.GetAllCharacters(id));
         }
         [HttpGet("{id}")]
         public async Task<ActionResult<ServiceResponse<GetCharacterDto>>> GetSingle(int id)
