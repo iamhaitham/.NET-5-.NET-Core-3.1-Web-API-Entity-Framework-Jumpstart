@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Section_1___Introduction___.NET_5.DTOs.Character;
+using Section_1___Introduction___.NET_5.DTOs.Skills;
 using Section_1___Introduction___.NET_5.Models;
 
 namespace Section_1___Introduction___.NET_5.Services.CharacterService
@@ -14,5 +15,6 @@ namespace Section_1___Introduction___.NET_5.Services.CharacterService
         Task<ServiceResponse<List<GetCharacterDto>>> AddCharacter(AddCharacterDto newCharacter);
         Task<ServiceResponse<GetCharacterDto>> UpdateCharacter(UpdateCharacterDto updatedCharacter);
         Task<ServiceResponse<List<GetCharacterDto>>> Delete(int id);
+        Task<ServiceResponse<GetCharacterDto>> AddCharacterSkill(AddCharacterSkillDto newCharacterSkill);
     }
 }
